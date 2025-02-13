@@ -1,48 +1,34 @@
-#include "lib.h"
+#include <unistd.h>
 
-int	ft_strlen(char *str)
+int main(int ac, char **av)
 {
-	int	len;
+    if (ac == 2)
+    {
+        int     i;
+        int     end;
+        char    *last_word;
 
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
-
-int	main(int ac, char *av[])
-{
-	if (ac == 2)
-	{
-		int	end;
-		int	i;
-
-		end = ft_strlen(av[1]);
-		end--;
-		i = 0;
-		while (end >= 0)
-		{
-			if (av[1][end--] == ' ')
-				end--;
-			while (av[1][end] != ' ')
-				end--;
-			if (av[1][end] == ' ')
-			{
-				end++;
-				i = end;
-				while (av[1][i] != '\0')
-				{
-					if (av[1][i] != ' ')
-					{
-						write(1, &av[1][i], 1);
-					}
-					else
-						break ;
-					i++;
-				}
-				break ;
-			}
-		}
-	}
-	write(1, "\n", 1);
+        i = 0;
+        while (av[1][i])
+            i++;
+        end = i - 1;
+        while (av[1][end])
+        {
+            if (av[1][end] > 32 && av[1][end - 1] <= 32)
+            {
+                last_word = &av[1][end];
+                break ;
+            }
+            end--;
+        }
+        i = 0;
+        while (last_word && last_word[i] > 32)
+        {
+            if (last_word[i] <= 32)
+                break ;
+            write(1, &last_word[i], 1);
+            i++;
+        }
+    }
+    write(1, "\n", 1);
 }
