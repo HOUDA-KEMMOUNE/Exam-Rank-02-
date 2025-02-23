@@ -57,14 +57,3 @@ char	**ft_split(char *s)
 	r[k] = '\0';
 	return (r);
 }
-
-int	main()
-{
-	int i = 0;
-	char **r = ft_split("   Hello  world  d");
-	while (r[i])
-	{
-		printf("%s\n", r[i]);
-		i++;
-	}
-}
