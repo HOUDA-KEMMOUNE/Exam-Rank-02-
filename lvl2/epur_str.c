@@ -5,25 +5,25 @@ int main(int ac, char **av)
 {
     if (ac == 2)
     {
-        int i;
-        // int start;
+        int     i;
 
         i = 0;
         while (av[1][i])
         {
             while (av[1][i] == ' ' || av[1][i] == '\t')
                 i++;
-            // start = i;
+            if (av[1][i] == '\0')
+                break ;
             while (av[1][i] != ' ' && av[1][i] != '\t' && av[1][i] != '\0')
             {
                 write(1, &av[1][i], 1);
                 i++;
             }
-            if ((av[1][i++] != '\t' || av[1][i++] != ' ') && (av[1][i++] != '\0'))
-                write(1, " ", 1);
-            else
-                break;
-            // i++;
+            while (av[1][i] == ' ' || av[1][i] == '\t')
+                i++;
+            if (av[1][i] == '\0')
+                break ;
+            write(1, " ", 1);
         }
     }
     write(1, "\n", 1);
