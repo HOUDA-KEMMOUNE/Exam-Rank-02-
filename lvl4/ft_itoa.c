@@ -59,7 +59,6 @@ char    *ft_itoa(int nbr)
         s[i] = '-';
         i++;
     }
-    printf("i --> %d\n", i);
     while (end >= 0 && str[end] != '-')
     {
         s[i] = str[end];
@@ -68,10 +67,4 @@ char    *ft_itoa(int nbr)
     }
     s[i] = '\0';
     return (s);
-}
-
-int main()
-{
-    char *s = ft_itoa(123456);
-    printf("%s\n", s);
 }
